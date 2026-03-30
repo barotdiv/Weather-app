@@ -1,4 +1,4 @@
-    const API_KEY = import.meta.env.VITE_API_KEY;;
+    const apikey = import.meta.env.VITE_API_KEY;;
 
     const icons = {
       Clear: "☀️", Clouds: "⛅", Rain: "🌧️",
@@ -10,15 +10,14 @@
     document.getElementById("cityInput").addEventListener("keydown", e => {
       if (e.key === "Enter") getWeather();
     });
+    document.getElementById("searchBtn").addEventListener("click", getWeather());
 
     async function getWeather() {
       const city = document.getElementById("cityInput").value.trim();
       if (!city) return;
-
       show("loading");
-
       try {
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=gandhinagar&units=metric&appid=441fc3c6098d416f081cfd2b39a1935d`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=gandhinagar&units=metric&appid=${VITE_API_KEY}`;
         const res  = await fetch(url);
         const data = await res.json();
 
